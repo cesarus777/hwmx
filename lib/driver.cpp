@@ -26,7 +26,7 @@
 
 int main() {
   try {
-    auto m = mmm::magicScammer<SCAN_TYPE>(std::cin);
+    auto m = mmm::magicScanner<SCAN_TYPE>(std::cin);
     std::cout << m.det() << std::endl;
   } catch (std::exception &e) {
     std::cerr << __FILE__ << ": Exception caught in main(): " << e.what()

@@ -24,14 +24,14 @@
 
 TEST(Scanner, ExpectedIntSuccsess1) {
   std::istringstream iss{"1 1"};
-  auto m = mmm::magicScammer<int>(iss);
+  auto m = mmm::magicScanner<int>(iss);
   EXPECT_EQ(m.dim(), 1);
   EXPECT_EQ(m(0, 0), 1);
 }
 
 TEST(Scanner, ExpectedIntSuccsess2) {
   std::istringstream iss{"2 1 2 3 4"};
-  auto m = mmm::magicScammer<int>(iss);
+  auto m = mmm::magicScanner<int>(iss);
   EXPECT_EQ(m.dim(), 2);
   for (int expect = 1; auto x : m)
     EXPECT_EQ(x, expect++);
@@ -39,14 +39,14 @@ TEST(Scanner, ExpectedIntSuccsess2) {
 
 TEST(Scanner, ExpectedFloatSuccsess1) {
   std::istringstream iss{"1 1.0"};
-  auto m = mmm::magicScammer<float>(iss);
+  auto m = mmm::magicScanner<float>(iss);
   EXPECT_EQ(m.dim(), 1);
   EXPECT_FLOAT_EQ(m(0, 0), 1.0f);
 }
 
 TEST(Scanner, ExpectedFloatSuccsess2) {
   std::istringstream iss{"2 1. 2 3.0 4"};
-  auto m = mmm::magicScammer<float>(iss);
+  auto m = mmm::magicScanner<float>(iss);
   EXPECT_EQ(m.dim(), 2);
   for (float expect = 1.0; auto x : m)
     EXPECT_FLOAT_EQ(x, expect++);
@@ -54,40 +54,40 @@ TEST(Scanner, ExpectedFloatSuccsess2) {
 
 TEST(Scanner, ExpectedSizeFailure1) {
   std::istringstream iss{"0 0"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::runtime_error);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::runtime_error);
 }
 
 TEST(Scanner, ExpectedSizeFailure2) {
   std::istringstream iss{"-1 1"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::runtime_error);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::runtime_error);
 }
 
 TEST(Scanner, ExpectedSizeFailure3) {
   std::istringstream iss{"1.0 1"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::ios_base::failure);
 }
 
 TEST(Scanner, ExpectedSizeFailure4) {
   std::istringstream iss{"1.0l 1"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::ios_base::failure);
 }
 
 TEST(Scanner, ExpectedIntInputFailure1) {
   std::istringstream iss{"1 1.0"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::ios_base::failure);
 }
 
 TEST(Scanner, ExpectedIntInputFailure2) {
   std::istringstream iss{"1 1.23"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::ios_base::failure);
 }
 
 TEST(Scanner, ExpectedIntInputFailure3) {
   std::istringstream iss{"1 1l"};
-  EXPECT_THROW(auto m = mmm::magicScammer<int>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<int>(iss), std::ios_base::failure);
 }
 
 TEST(Scanner, ExpectedFloatInputFailure1) {
   std::istringstream iss{"1 1.f"};
-  EXPECT_THROW(auto m = mmm::magicScammer<float>(iss), std::ios_base::failure);
+  EXPECT_THROW(auto m = mmm::magicScanner<float>(iss), std::ios_base::failure);
 }

@@ -24,7 +24,7 @@
 
 namespace mmm { // my magic matrix
 
-template <typename T> [[nodiscard]] Matrix<T> magicScammer(std::istream &is) {
+template <typename T> [[nodiscard]] Matrix<T> magicScanner(std::istream &is) {
   auto is_valid = [](std::istream &is) -> bool {
     return (is.eof() || std::isspace(is.peek())) && !is.fail();
   };
