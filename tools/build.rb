@@ -53,6 +53,8 @@ end
 def run!(args)
   verbose = args.include?('-v') || args.include?('--verbose')
   Builder.new({ verbose: verbose }).configure.build.unit_test.install
+rescue RuntimeError => e
+  abort "Error: #{e.message}"
 end
 
 $PROGRAM_NAME == __FILE__ && run!(ARGV)

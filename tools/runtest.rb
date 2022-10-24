@@ -35,6 +35,8 @@ def run!(args)
   Builder.new({ verbose: verbose }).configure.build.unit_test.install
   Testsuite::Context.new({ install_root: "#{repo_root}/install",
                           verbose: verbose }).run!
+rescue RuntimeError => e
+  abort "Error: #{e.message}"
 end
 
 $PROGRAM_NAME == __FILE__ && run!(ARGV)
