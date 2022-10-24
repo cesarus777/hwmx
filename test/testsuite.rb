@@ -35,7 +35,7 @@ module Testsuite
     end
 
     def pretty_print_mtx(mtx)
-      mtx.each do |row|
+      mtx.to_a.each do |row|
         row.each { |elem| print "#{elem} " }
         print "\n"
       end
